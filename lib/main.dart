@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pinterest_clone/views/screens/home_tab.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ final theme = ThemeData(
   appBarTheme: AppBarTheme(
     centerTitle: true,
     titleTextStyle: GoogleFonts.poppins(
-      fontSize: 14,
+      fontSize: 16,
       fontWeight: FontWeight.bold,
     ),
   ),
@@ -27,13 +28,13 @@ final theme = ThemeData(
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pinterest',
       theme: theme,
-      home: const Text('Flutter Demo Home Page'),
+      home: const HomeTab(),
     );
   }
 }
