@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:pinterest_clone/views/screens/home_tab.dart';
 
-void main() {
+Future<void> main() async{
+  await dotenv.load(fileName: '.env');
   runApp(const MyApp());
 }
 
