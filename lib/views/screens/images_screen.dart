@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 import 'package:pinterest_clone/models/image_model.dart';
 import 'package:pinterest_clone/views/widgets/image_item.dart';
 
@@ -16,18 +18,16 @@ class ImagesScreen extends StatefulWidget {
 class _ImagesScreenState extends State<ImagesScreen> {
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      padding: const EdgeInsets.all(10),
-      itemCount: widget.images.length,
-      gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 4.0,
-        mainAxisSpacing: 4.0,
-        childAspectRatio: 0.8
-      ), 
+    return MasonryGridView.count(
+      padding: const EdgeInsets.all(5),
+      crossAxisCount: 2,
+      mainAxisSpacing: 4.0,
+      crossAxisSpacing: 4.0,
       itemBuilder: (context, index) => ImageItem(
         image: widget.images[index],
-      )
+        height: (index % 5 + 1) * 100,
+      ),
+      itemCount: widget.images.length,
     );
   }
 }
