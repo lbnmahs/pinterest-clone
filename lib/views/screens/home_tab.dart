@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pinterest_clone/bloc/images_bloc.dart';
+import 'package:pinterest_clone/views/screens/images_screen.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -29,6 +32,18 @@ class _HomeTabState extends State<HomeTab> {
           ],
         ),
         forceMaterialTransparency: true,
+      ),
+      body: BlocBuilder<ImagesBloc, ImagesState>(
+        builder: ((context, state) {
+          if( state is ImagesFailure) {
+            return Center(child: Text(state.message));
+          }
+          if(state is ImagesSuccess) {
+            final images = state.images;
+            return ImagesScreen(images: images);
+          }
+          return const Center(child: CircularProgressIndicator.adaptive());
+        }),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

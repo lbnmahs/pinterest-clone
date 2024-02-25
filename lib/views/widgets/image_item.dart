@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pinterest_clone/models/image_model.dart';
 
 class ImageItem extends StatelessWidget {
-  final String image;
+  final GeneratedImage image;
 
   const ImageItem({super.key, required this.image});
 
@@ -11,7 +12,7 @@ class ImageItem extends StatelessWidget {
       children: [
         Expanded(
           child: Image.network(
-            image,
+            image.url,
             fit: BoxFit.cover,
           ),
         ),
