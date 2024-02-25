@@ -7,7 +7,7 @@ class GeneratedImage {
   factory GeneratedImage.fromJson(Map<String, dynamic> json) {
     return GeneratedImage(
       id: json['id'],
-      url: json['url'],
+      url: json['urls']['regular'],
     );
   }
 }
