@@ -41,7 +41,11 @@ class MyApp extends StatelessWidget {
     return RepositoryProvider(
       create: (context) => ImageRepository(ImageDataProvider()),
       child: BlocProvider(
-        create: (context) => ImagesBloc(context.read<ImageRepository>()),
+        create: (context) {
+          final imagesBloc = ImagesBloc(context.read<ImageRepository>());
+          imagesBloc.add(ImagesFetched());
+          return imagesBloc;
+        },
         child: MaterialApp(
           title: 'Pinterest',
           theme: theme,

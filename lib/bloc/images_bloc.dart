@@ -19,10 +19,9 @@ class ImagesBloc extends Bloc<ImagesEvent, ImagesState> {
     emit(ImagesLoading());
     try {
       final images = await imageRepository.getGeneratedImages();
-
       emit(ImagesSuccess(images));
     } catch (e) {
-      throw e.toString();
+      emit(ImagesFailure(e.toString()));
     }
   }
 }

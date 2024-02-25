@@ -14,6 +14,8 @@ class ImageItem extends StatelessWidget {
           child: Image.network(
             image.url,
             fit: BoxFit.cover,
+            cacheHeight: 200,
+            cacheWidth: 200,
           ),
         ),
         const Padding(

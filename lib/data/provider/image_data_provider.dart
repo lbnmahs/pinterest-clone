@@ -11,7 +11,7 @@ class ImageDataProvider {
     try {
       // Pulling random images from the unsplash API
       final response = await http.get(
-        Uri.parse('https://api.unsplash.com/photos/random?count=30'),
+        Uri.parse('https://api.unsplash.com/photos/random?count=10'),
         headers: {
           'Authorization':'Client-ID $client_id'
         }
