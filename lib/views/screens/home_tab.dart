@@ -16,11 +16,9 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   int _selectedIndex = 0;
-  
+
   void _onNavItemSelect(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    setState(() => _selectedIndex = index);
   }
 
   @override
@@ -50,7 +48,12 @@ class _HomeTabState extends State<HomeTab> {
           }
           if(state is ImagesSuccess) {
             final images = state.images;
-            return ImagesScreen(images: images);
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<ImagesBloc>().add(ImagesFetched());
+              },
+              child: ImagesScreen(images: images)
+            );
           }
           return const Center(child: CircularProgressIndicator.adaptive());
         }),
@@ -77,7 +80,7 @@ class _HomeTabState extends State<HomeTab> {
         icons: const [
           Icons.home_rounded,
           Icons.search_rounded,
-          Icons.messenger,
+          Icons.bubble_chart_rounded,
           Icons.person_rounded,
         ], 
         selectedIndex: _selectedIndex, 

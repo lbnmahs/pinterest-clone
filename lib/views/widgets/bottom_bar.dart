@@ -23,7 +23,7 @@ class _BottomBarState extends State<BottomBar> {
       shape: const CircularNotchedRectangle(),
       notchMargin: 10,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: List.generate(
           widget.icons.length,
           (index) => _buildItem(index),
