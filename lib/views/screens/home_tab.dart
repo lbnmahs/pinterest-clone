@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:pinterest_clone/bloc/images_bloc.dart';
 import 'package:pinterest_clone/views/screens/images_screen.dart';
+import 'package:pinterest_clone/views/widgets/bottom_bar.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -13,6 +15,14 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
+  int _selectedIndex = 0;
+  
+  void _onNavItemSelect(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,30 +55,33 @@ class _HomeTabState extends State<HomeTab> {
           return const Center(child: CircularProgressIndicator.adaptive());
         }),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_rounded),
-            label: 'Home',
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Container(
+        margin: const EdgeInsets.only(top: 10),
+        height: 50,
+        width: 50,
+        child: FloatingActionButton(
+          onPressed: () {},
+          elevation: 0.0,
+          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search_rounded),
-            label: 'Search',
+          child: Icon(
+            Icons.add, 
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Add',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_rounded),
-            label: 'Profile',
-          ),
-
-        ],
+        ),
+      ),
+      bottomNavigationBar: BottomBar(
+        icons: const [
+          Icons.home_rounded,
+          Icons.search_rounded,
+          Icons.messenger,
+          Icons.person_rounded,
+        ], 
+        selectedIndex: _selectedIndex, 
+        onItemSelected: _onNavItemSelect
       )
     );
   }
