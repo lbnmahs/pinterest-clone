@@ -1,16 +1,36 @@
-# pinterest_clone
+# Pinterest Clone
 
-A new Flutter project.
-
+Media sharing application illustrating how to implement a staggering grid layout. It also uses the BLoC (Business Logic Component) architecture to pull different types of media from the Unsplash API.
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To run the application, run the following commands
 
-A few resources to get you started if this is your first Flutter project:
+1. Clone the repository
+    ```git
+       git clone https://github.com/lbnmahs/pinterest-clone.git
+    ```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+2. Change the directory
+    ```git
+       cd pinterest-clone
+    ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+3. Install dependencies
+    ```dart
+       flutter pub add http, google_fonts, transparent_image, flutter_bloc, flutter_dotenv, flutter_staggered_grid_view
+    ```
+
+4. Run the application
+    ```dart
+       flutter run
+    ```
+## Contributing
+
+Contributions are welcome! If you find any bugs or have suggestions for improvement, please open an issue or submit a pull request.
+
+
+## Acknowledgements
+
+* Flutter, an open-source UI software development toolkit, developed this app.
+
+Happy Coding 🚀
