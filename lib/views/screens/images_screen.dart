@@ -25,7 +25,7 @@ class _ImagesScreenState extends State<ImagesScreen> {
       crossAxisSpacing: 4.0,
       itemBuilder: (context, index) => ImageItem(
         image: widget.images[index],
-        height: (index % 5 + 1) * 100,
+        height: (index % 6 + 1) * 90,
       ),
       itemCount: widget.images.length,
     );
