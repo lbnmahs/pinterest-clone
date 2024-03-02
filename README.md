@@ -17,7 +17,7 @@ To run the application, run the following commands
 
 3. Install dependencies
     ```dart
-       flutter pub add http, google_fonts, transparent_image, flutter_bloc, flutter_dotenv, flutter_staggered_grid_view
+       flutter pub get
     ```
 
 4. Run the application
