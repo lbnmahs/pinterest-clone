@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:pinterest_clone/bloc/images_bloc.dart';
 import 'package:pinterest_clone/views/screens/images_screen.dart';
+import 'package:pinterest_clone/views/widgets/add_button_modal.dart';
 import 'package:pinterest_clone/views/widgets/bottom_bar.dart';
 
 class HomeTab extends StatefulWidget {
@@ -64,7 +65,12 @@ class _HomeTabState extends State<HomeTab> {
         height: 50,
         width: 50,
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            showModalBottomSheet(
+              context: context, 
+              builder: (ctx) => const AddButtonModal()
+            );
+          },
           elevation: 0.0,
           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
           shape: RoundedRectangleBorder(
