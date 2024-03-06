@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:pinterest_clone/bloc/images_bloc.dart';
-import 'package:pinterest_clone/views/widgets/images_list.dart';
+import 'package:pinterest_clone/views/screens/chat_screen.dart';
+import 'package:pinterest_clone/views/screens/home_screen.dart';
+import 'package:pinterest_clone/views/screens/profile_screen.dart';
+import 'package:pinterest_clone/views/screens/search_screen.dart';
 import 'package:pinterest_clone/views/widgets/add_button_modal.dart';
 import 'package:pinterest_clone/views/widgets/bottom_bar.dart';
 
@@ -17,6 +18,13 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   int _selectedIndex = 0;
+
+  final _pages = [
+    const HomeScreen(),
+    const SearchScreen(),
+    const ChatScreen(),
+    const ProfileScreen()
+  ];
 
   void _onNavItemSelect(int index) {
     setState(() => _selectedIndex = index);
@@ -42,22 +50,9 @@ class _HomeTabState extends State<HomeTab> {
         ),
         forceMaterialTransparency: true,
       ),
-      body: BlocBuilder<ImagesBloc, ImagesState>(
-        builder: ((context, state) {
-          if( state is ImagesFailure) {
-            return Center(child: Text(state.message));
-          }
-          if(state is ImagesSuccess) {
-            final images = state.images;
-            return RefreshIndicator(
-              onRefresh: () async {
-                context.read<ImagesBloc>().add(ImagesFetched());
-              },
-              child: ImagesScreen(images: images)
-            );
-          }
-          return const Center(child: CircularProgressIndicator.adaptive());
-        }),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _pages,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Container(
