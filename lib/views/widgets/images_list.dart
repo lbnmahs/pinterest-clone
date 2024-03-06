@@ -4,18 +4,18 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:pinterest_clone/models/image_model.dart';
 import 'package:pinterest_clone/views/widgets/image_item.dart';
 
-class ImagesScreen extends StatefulWidget {
-  const ImagesScreen({super.key, required this.images});
+class ImageList extends StatefulWidget {
+  const ImageList({super.key, required this.images});
 
   final List<GeneratedImage> images;
 
   @override
-  State<ImagesScreen> createState() {
-    return _ImagesScreenState();
+  State<ImageList> createState() {
+    return _ImageListState();
   }
 }
 
-class _ImagesScreenState extends State<ImagesScreen> {
+class _ImageListState extends State<ImageList> {
   @override
   Widget build(BuildContext context) {
     return MasonryGridView.count(

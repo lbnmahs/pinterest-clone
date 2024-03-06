@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onRefresh: () async {
                 context.read<ImagesBloc>().add(ImagesFetched());
               },
-              child: ImagesScreen(images: images)
+              child: ImageList(images: images)
             );
           }
           return const Center(child: CircularProgressIndicator.adaptive());
