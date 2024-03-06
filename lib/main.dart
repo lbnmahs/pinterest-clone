@@ -3,7 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:pinterest_clone/bloc/images_bloc.dart';
+import 'package:pinterest_clone/middleware/images_bloc/images_bloc.dart';
 import 'package:pinterest_clone/data/provider/image_data_provider.dart';
 import 'package:pinterest_clone/data/repository/image_repository.dart';
 import 'package:pinterest_clone/views/screens/home_tab.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:pinterest_clone/bloc/images_bloc.dart';
+import 'package:pinterest_clone/middleware/images_bloc/images_bloc.dart';
 import 'package:pinterest_clone/views/widgets/images_list.dart';
 
 class HomeScreen extends StatefulWidget {
