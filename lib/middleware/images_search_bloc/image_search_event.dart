@@ -8,3 +8,5 @@ class SearchImageEvent extends ImageSearchEvent {
 
   SearchImageEvent(this.query);
 }
+
+class ClearSearchEvent extends ImageSearchEvent {}

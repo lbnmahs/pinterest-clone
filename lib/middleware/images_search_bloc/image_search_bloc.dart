@@ -16,14 +16,16 @@ class ImageSearchBloc extends Bloc<ImageSearchEvent, ImageSearchState> {
   }
 
   void _getSearchedImages (ImageSearchEvent event, Emitter<ImageSearchState> emit) async {
-    emit(ImageSearchLoading());
-    try {
-      if (event is SearchImageEvent) {
+    if (event is SearchImageEvent) {
+      emit(ImageSearchLoading());
+      try {
         final images = await imageSearchRepository.searchImages(event.query);
         emit(ImageSearchSuccess(images));
+      } catch (e) {
+        emit(ImageSearchFailure(e.toString()));
       }
-    } catch (e) {
-      emit(ImageSearchFailure(e.toString()));
+    } else if (event is ClearSearchEvent) {
+      emit(ImageSearchInitial());
     }
   }
 }

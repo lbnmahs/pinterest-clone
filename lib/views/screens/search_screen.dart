@@ -16,9 +16,15 @@ class SearchScreen extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: TextField(
                 onChanged: (value) {
-                  BlocProvider.of<ImageSearchBloc>(context).add(
-                    SearchImageEvent(value)
-                  );
+                  if(value.isNotEmpty){
+                    BlocProvider.of<ImageSearchBloc>(context).add(
+                      SearchImageEvent(value)
+                    );
+                  } else {
+                    BlocProvider.of<ImageSearchBloc>(context).add(
+                      ClearSearchEvent()
+                    );
+                  }
                 },
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: Theme.of(context).colorScheme.onSurface,
@@ -38,6 +44,9 @@ class SearchScreen extends StatelessWidget {
             Expanded(
               child: BlocBuilder<ImageSearchBloc, ImageSearchState>(
                 builder: (context, state) {
+                  if(state is ImageSearchInitial) {
+                    return const Center(child: Text('Search for Images'));
+                  }
                   if(state is ImageSearchFailure) {
                     return Center(child: Text(state.message));
                   }
