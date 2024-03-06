@@ -25,3 +25,26 @@ class ImageDataProvider {
     }
   }
 }
+
+class ImageSearchDataProvider {
+  String? client_id = dotenv.env['UNSPLASH_CLIENT_ID'];
+
+  Future<List<GeneratedImage>> searchImages(String query) async {
+    try {
+      // Pulling random images from the unsplash API
+      final response = await http.get(
+        Uri.parse('https://api.unsplash.com/search/photos?query=$query&per_page=10'),
+        headers: {
+          'Authorization':'Client-ID $client_id'
+        }
+      );
+      final Map<String, dynamic> data = json.decode(response.body);
+      final List<dynamic> results = data['results'];
+
+      //  Mapping each image to a GeneratedImage object
+      return results.map((item) => GeneratedImage.fromJson(item)).toList();
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+}
