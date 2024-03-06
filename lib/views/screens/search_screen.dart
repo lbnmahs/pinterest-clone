@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinterest_clone/middleware/images_search_bloc/image_search_bloc.dart';
+import 'package:pinterest_clone/views/widgets/images_list.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -15,7 +16,9 @@ class SearchScreen extends StatelessWidget {
               padding: const EdgeInsets.all(10),
               child: TextField(
                 onChanged: (value) {
-                  BlocProvider.of<ImageSearchBloc>(context).add(SearchImageEvent(value));
+                  BlocProvider.of<ImageSearchBloc>(context).add(
+                    SearchImageEvent(value)
+                  );
                 },
                 decoration: InputDecoration(
                   labelText: 'Search images',
@@ -29,7 +32,20 @@ class SearchScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            const Expanded(child: Center(child: Text('Images'),))
+            Expanded(
+              child: BlocBuilder<ImageSearchBloc, ImageSearchState>(
+                builder: (context, state) {
+                  if(state is ImageSearchFailure) {
+                    return Center(child: Text(state.message));
+                  }
+                  if(state is ImageSearchSuccess) {
+                    final images = state.images;
+                    return ImageList(images: images);
+                  }
+                  return const Center(child: CircularProgressIndicator.adaptive());
+                }
+              )
+            )
           ]
         ),
       ),
