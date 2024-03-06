@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pinterest_clone/middleware/images_search_bloc/image_search_bloc.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -6,26 +8,30 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Theme.of(context).colorScheme.background,
-        padding: const EdgeInsets.all(15),
+      body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 20),
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Search for an image',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: TextField(
+                onChanged: (value) {
+                  BlocProvider.of<ImageSearchBloc>(context).add(SearchImageEvent(value));
+                },
+                decoration: InputDecoration(
+                  labelText: 'Search images',
+                  prefixIcon: const Icon(Icons.search),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  filled: true,
+                  fillColor: Theme.of(context).colorScheme.surface,
                 ),
-                filled: true,
-                fillColor: Theme.of(context).colorScheme.surface,
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
+            const Expanded(child: Center(child: Text('Images'),))
           ]
-        )
+        ),
       ),
     );
   }
