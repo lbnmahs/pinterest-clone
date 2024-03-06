@@ -31,15 +31,14 @@ class ImageSearchDataProvider {
 
   Future<List<GeneratedImage>> searchImages(String query) async {
     try {
-      // Pulling random images from the unsplash API
+      // Pulling images from the unsplash API via search
       final response = await http.get(
-        Uri.parse('https://api.unsplash.com/search/photos?query=$query&per_page=10'),
+        Uri.parse('https://api.unsplash.com/search/photos?query=$query&per_page=10&order_by=relevant'),
         headers: {
           'Authorization':'Client-ID $client_id'
         }
       );
-      final Map<String, dynamic> data = json.decode(response.body);
-      final List<dynamic> results = data['results'];
+      final List<dynamic> results = json.decode(response.body);
 
       //  Mapping each image to a GeneratedImage object
       return results.map((item) => GeneratedImage.fromJson(item)).toList();

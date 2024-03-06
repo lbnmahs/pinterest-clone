@@ -9,3 +9,12 @@ class ImageRepository {
     return await dataProvider.getImages();
   }
 }
+
+class ImageSearchRepository {
+  const ImageSearchRepository(this.dataProvider);
+  final ImageSearchDataProvider dataProvider;
+
+  Future<List<GeneratedImage>> searchImages(String query) async {
+    return await dataProvider.searchImages(query);
+  }
+}
