@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:pinterest_clone/middleware/images_bloc/images_bloc.dart';
-import 'package:pinterest_clone/data/provider/image_data_provider.dart';
 import 'package:pinterest_clone/data/repository/image_repository.dart';
+import 'package:pinterest_clone/middleware/images_search_bloc/image_search_bloc.dart';
 import 'package:pinterest_clone/views/screens/home_tab.dart';
 
 Future<void> main() async {
@@ -38,20 +38,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-      create: (context) => ImageRepository(ImageDataProvider()),
-      child: BlocProvider(
-        create: (context) {
-          final imagesBloc = ImagesBloc(context.read<ImageRepository>());
-          imagesBloc.add(ImagesFetched());
-          return imagesBloc;
-        },
-        child: MaterialApp(
-          title: 'Pinterest',
-          theme: theme,
-          home: const HomeTab(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) {
+            final imagesBloc = ImagesBloc(context.read<ImageRepository>());
+            imagesBloc.add(ImagesFetched());
+            return imagesBloc;
+          },
         ),
-      ),
+        BlocProvider(
+          create: (context) {
+            final imageSearchBloc = ImageSearchBloc(context.read<ImageSearchRepository>());
+            imageSearchBloc.add(SearchImageEvent(''));
+            return imageSearchBloc;
+          }
+        )
+      ], 
+      child: MaterialApp(
+        title: 'Pinterest',
+        theme: theme,
+        home: const HomeTab(),
+      )
     );
   }
 }
