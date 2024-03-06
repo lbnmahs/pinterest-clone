@@ -9,12 +9,13 @@ final class ImageSearchLoading extends ImageSearchState {}
 
 final class ImageSearchSuccess extends ImageSearchState {
   final List<GeneratedImage> images;
-  
-  ImageSearchSuccess(this.images);
+  final bool hasResults;
+
+  ImageSearchSuccess(this.images) : hasResults = images.isNotEmpty;
 }
 
 final class ImageSearchFailure extends ImageSearchState {
   final String message;
-  
+
   ImageSearchFailure(this.message);
 }

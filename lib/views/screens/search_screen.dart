@@ -39,8 +39,11 @@ class SearchScreen extends StatelessWidget {
                     return Center(child: Text(state.message));
                   }
                   if(state is ImageSearchSuccess) {
-                    final images = state.images;
-                    return ImageList(images: images);
+                    if(state.hasResults){
+                      return ImageList(images: state.images);
+                    } else {
+                      return const Center(child: Text('No results found'));
+                    }
                   }
                   return const Center(child: CircularProgressIndicator.adaptive());
                 }
