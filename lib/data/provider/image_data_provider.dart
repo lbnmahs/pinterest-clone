@@ -11,11 +11,12 @@ class ImageDataProvider {
     try {
       // Pulling random images from the unsplash API
       final response = await http.get(
-        Uri.parse('https://api.unsplash.com/photos/random?count=10'),
+        Uri.parse('https://api.unsplash.com/photos/random?count=20'),
         headers: {
           'Authorization':'Client-ID $client_id'
         }
       );
+
       final List<dynamic> data = json.decode(response.body);
 
       //  Mapping each image to a GeneratedImage object
@@ -38,7 +39,9 @@ class ImageSearchDataProvider {
           'Authorization':'Client-ID $client_id'
         }
       );
-      final List<dynamic> results = json.decode(response.body);
+
+      final Map<String, dynamic> data = json.decode(response.body);
+      final List<dynamic> results = data['results'];
 
       //  Mapping each image to a GeneratedImage object
       return results.map((item) => GeneratedImage.fromJson(item)).toList();

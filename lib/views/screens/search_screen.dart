@@ -20,14 +20,17 @@ class SearchScreen extends StatelessWidget {
                     SearchImageEvent(value)
                   );
                 },
+                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
                 decoration: InputDecoration(
                   labelText: 'Search images',
-                  prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   filled: true,
                   fillColor: Theme.of(context).colorScheme.surface,
+                  
                 ),
               ),
             ),

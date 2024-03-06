@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:pinterest_clone/data/provider/image_data_provider.dart';
 import 'package:pinterest_clone/middleware/images_bloc/images_bloc.dart';
 import 'package:pinterest_clone/data/repository/image_repository.dart';
 import 'package:pinterest_clone/middleware/images_search_bloc/image_search_bloc.dart';
@@ -10,7 +11,19 @@ import 'package:pinterest_clone/views/screens/home_tab.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: '.env');
-  runApp(const MyApp());
+  runApp(
+    MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<ImageRepository>(
+          create: (context) => ImageRepository(ImageDataProvider()),
+        ),
+        RepositoryProvider<ImageSearchRepository>(
+          create: (context) => ImageSearchRepository(ImageSearchDataProvider()),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 final theme = ThemeData(
@@ -58,7 +71,25 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Pinterest',
         theme: theme,
-        home: const HomeTab(),
+        home: MultiBlocListener(
+          listeners: [
+            BlocListener<ImagesBloc, ImagesState>(
+              listener: (context, state) {
+                if (state is ImagesInitial) {
+                  context.read<ImagesBloc>().add(ImagesFetched());
+                }
+              },
+            ),
+            BlocListener<ImageSearchBloc, ImageSearchState>(
+              listener: (context, state) {
+                if (state is ImageSearchInitial) {
+                  context.read<ImageSearchBloc>().add(SearchImageEvent(''));
+                }
+              },
+            ),
+          ],
+          child: const HomeTab()
+        ),
       )
     );
   }
