@@ -14,7 +14,7 @@ class SearchScreen extends StatelessWidget {
             const SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
-                hintText: 'Search for a user',
+                hintText: 'Search for an image',
                 prefixIcon: const Icon(Icons.search),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),

@@ -5,10 +5,12 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Chat Screen'),
-      ),
+    return Scaffold(
+      body: Container(
+        // color: Theme.of(context).colorScheme.background,
+        padding: const EdgeInsets.all(15),
+        child: const Center(child: Text('Chat Screen'),),
+      )
     );
   }
 }

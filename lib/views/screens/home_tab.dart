@@ -33,23 +33,6 @@ class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Column(
-          children: [
-            const Text('All'),
-            const SizedBox(height: 5),
-            Container(
-              height: 3,
-              width: 25,
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.onBackground,
-                borderRadius: BorderRadius.circular(20),
-              )
-            )
-          ],
-        ),
-        forceMaterialTransparency: true,
-      ),
       body: IndexedStack(
         index: _selectedIndex,
         children: _pages,
