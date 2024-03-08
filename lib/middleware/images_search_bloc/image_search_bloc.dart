@@ -1,7 +1,9 @@
 // ignore_for_file: depend_on_referenced_packages
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+
 import 'package:pinterest_clone/data/repository/image_repository.dart';
 import 'package:pinterest_clone/models/image_model.dart';
 
