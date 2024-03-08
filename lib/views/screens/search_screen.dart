@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:pinterest_clone/middleware/images_search_bloc/image_search_bloc.dart';
 import 'package:pinterest_clone/views/widgets/images_list.dart';
 
