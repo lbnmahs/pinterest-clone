@@ -1,6 +1,6 @@
 # Pinterest Clone
 
-Media sharing application illustrating how to implement a staggering grid layout. It also uses the BLoC (Business Logic Component) architecture to pull different types of media from the Unsplash API.
+Media sharing application illustrating how to implement a staggering grid layout. It also uses the BLoC (Business Logic Component) architecture to pull different types of media from the Unsplash API. In addition, one can also search for photos from the API.
 ## Getting Started
 
 To run the application, run the following commands
@@ -15,7 +15,7 @@ To run the application, run the following commands
        cd pinterest-clone
     ```
 
-3. Install dependencies
+3. Fetch dependencies
     ```dart
        flutter pub get
     ```
