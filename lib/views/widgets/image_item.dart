@@ -17,6 +17,7 @@ class ImageItem extends StatelessWidget {
       child: Stack(
         children: [
           FadeInImage(
+            // This is a placeholder image that is shown while the main image is loading.
             placeholder: MemoryImage(kTransparentImage),
             image: NetworkImage(image.url),
             fit: BoxFit.cover,

@@ -17,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // The app bar
       appBar: AppBar(
         title: Column(
           children: [
@@ -34,20 +35,27 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         forceMaterialTransparency: true,
       ),
+
+      // This is the entry point for the images.
+      // We are using BLoC to fetch images from the Unsplash API.
       body: BlocBuilder<ImagesBloc, ImagesState>(
         builder: ((context, state) {
+          // If there is a problem with the API call, we show an error message.
           if (state is ImagesFailure) {
             return Center(child: Text(state.message));
           }
+          // If the API call is successful, we show the list of images.
           if (state is ImagesSuccess) {
             final images = state.images;
             return RefreshIndicator(
+              // This helps to refresh the images when the user pulls down the screen.
               onRefresh: () async {
                 context.read<ImagesBloc>().add(ImagesFetched());
               },
               child: ImageList(images: images)
             );
           }
+          // If the API call is still in progress, we show a loading indicator.
           return const Center(child: CircularProgressIndicator.adaptive());
         }),
       ),
