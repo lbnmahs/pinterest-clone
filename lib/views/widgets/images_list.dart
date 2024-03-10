@@ -7,6 +7,7 @@ import 'package:pinterest_clone/views/widgets/image_item.dart';
 class ImageList extends StatefulWidget {
   const ImageList({super.key, required this.images});
 
+  // List of images that are fetched from the Unsplash API.
   final List<GeneratedImage> images;
 
   @override

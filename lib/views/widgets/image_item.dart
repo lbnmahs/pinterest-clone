@@ -4,7 +4,9 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:pinterest_clone/models/image_model.dart';
 
 class ImageItem extends StatelessWidget {
+  // The image that is fetched from the Unsplash API.
   final GeneratedImage image;
+  // The height of the image.
   final double height;
 
   const ImageItem({super.key, required this.image, required this.height});
@@ -17,7 +19,7 @@ class ImageItem extends StatelessWidget {
       child: Stack(
         children: [
           FadeInImage(
-            // This is a placeholder image that is shown while the main image is loading.
+            // Placeholder image that is shown while the main image is loading.
             placeholder: MemoryImage(kTransparentImage),
             image: NetworkImage(image.url),
             fit: BoxFit.cover,
